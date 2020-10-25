@@ -4,7 +4,7 @@ export default {
   render(image: Images) {
     return {
       id: image.id,
-      path: `${process.env.SERVER_URL}/uploads/${image.path}`,
+      url: `${process.env.SERVER_URL}/uploads/${image.path}`,
     };
   },
 
