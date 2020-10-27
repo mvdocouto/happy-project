@@ -30,8 +30,9 @@ interface Orphanage {
   opening_hours: string;
   open_on_weekends: string;
   images: Array<{
-    path: string;
-  }>
+    id: number;
+    url: string;
+  }>;
 }
 
 interface OrphanageParams {
@@ -41,30 +42,46 @@ interface OrphanageParams {
 export default function Orphanage() {
   const params = useParams<OrphanageParams>();
   const [orphanage, setOrphanage] = useState<Orphanage>();
+  const [activeImageIndex, setActiveImageIndex] = useState(0);
 
   useEffect(() => {
     api.get(`orphanages/${params.id}`).then((response) => {
       setOrphanage(response.data);
     });
-  }, [params.id]) ;
+  }, [params.id]);
 
   if (!orphanage) {
     return <p>Carregando...</p>;
   }
-
-  console.log(orphanage);
+  
   return (
     <div id="page-orphanage">
       <Sidebar />
 
       <main>
         <div className="orphanage-details">
-          <img src={orphanage.images[0].path} alt={orphanage.name} />
+          <img
+            src={orphanage.images[activeImageIndex].url}
+            alt={orphanage.name}
+          />
 
           <div className="images">
-            <button className="active" type="button">
-              <img src={orphanage.images[1].path} alt={orphanage.name} />
-            </button>
+            {orphanage.images.map((image, index) => {
+              return (
+                <button
+                  className={
+                    activeImageIndex === index ? "active" : ""
+                  }
+                  type="button"
+                  key={image.id}
+                  onClick={() => {
+                    setActiveImageIndex(index);
+                  }}
+                >
+                  <img src={image.url} alt={orphanage.name} />
+                </button>
+              );
+            })}
           </div>
 
           <div className="orphanage-details-content">
@@ -115,9 +132,9 @@ export default function Orphanage() {
                   fim de semana
                 </div>
               ) : (
-                <div className="open-on-weekends">
-                  <FiInfo size={32} color="#39CC83" />
-                  Atendemos <br />
+                <div className="not-open-on-weekends">
+                  <FiInfo size={32} color="#FF669D" />
+                  Não atendemos <br />
                   fim de semana
                 </div>
               )}
