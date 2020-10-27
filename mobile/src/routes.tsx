@@ -19,7 +19,6 @@ export default function Routes() {
 
   useEffect(() => {
     AsyncStorage.getItem("showOnboarding").then((value) => {
-      console.log("showOnboarding", value);
       if (value !== null) {
         setIsFirstLaunch(value);
       } else {
@@ -28,7 +27,6 @@ export default function Routes() {
     });
   }, []);
 
-  console.log("isFirstLaunch", isFirstLaunch);
   return (
     <NavigationContainer>
       <Navigator
