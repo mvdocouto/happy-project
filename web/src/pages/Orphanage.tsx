@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { FaWhatsapp } from "react-icons/fa";
+// import { FaWhatsapp } from "react-icons/fa";
 import { FiClock, FiInfo } from "react-icons/fi";
 import { Map, Marker, TileLayer } from "react-leaflet";
 import { useParams } from "react-router-dom";
@@ -53,7 +53,7 @@ export default function Orphanage() {
   if (!orphanage) {
     return <p>Carregando...</p>;
   }
-  
+
   return (
     <div id="page-orphanage">
       <Sidebar />
@@ -69,9 +69,7 @@ export default function Orphanage() {
             {orphanage.images.map((image, index) => {
               return (
                 <button
-                  className={
-                    activeImageIndex === index ? "active" : ""
-                  }
+                  className={activeImageIndex === index ? "active" : ""}
                   type="button"
                   key={image.id}
                   onClick={() => {
@@ -110,7 +108,11 @@ export default function Orphanage() {
               </Map>
 
               <footer>
-                <a href="">Ver rotas no Google Maps</a>
+                <a
+                  href={`https://www.google.com/maps/dir/?api=1&detination=${orphanage?.latitude},${orphanage?.latitude}`}
+                >
+                  Ver rotas no Google Maps
+                </a>
               </footer>
             </div>
 
