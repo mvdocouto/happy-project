@@ -41,14 +41,14 @@ export default {
       return { path: image.filename };
     });
     
-    const data   = {
+    const data = {
       name,
       latitude,
       longitude,
       about,
       instructions,
       opening_hours,
-      open_on_weekends,
+      open_on_weekends: open_on_weekends === 'true',
       images,
     };
 
