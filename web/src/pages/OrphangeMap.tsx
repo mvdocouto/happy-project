@@ -34,6 +34,7 @@ function OrphanagesMap() {
     })
   }, []);
 
+ console.log("orphanages", orphanages);
   
 
   return (
@@ -73,7 +74,7 @@ function OrphanagesMap() {
                 maxWidth={240}
                 className="map-popup"
               >
-                Lar das Meninas
+                {orphanage.name}
                 <Link to={`/orphanages/${orphanage.id}`}>
                   <FiArrowRight size={32} color="#FFF" />
                 </Link>
