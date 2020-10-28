@@ -2,6 +2,17 @@
 
 Projeto de sistema para cadastro de orfanatos, disponibilizando os dados de endereço, horario de funcionamento, dias de visita e informações sobre a instituição.
 
+## Tecnologias
+
+Esse projeto foi desenvolvido com as seguintes tecnologias:
+
+- [Node.js](https://nodejs.org/en/)
+- [React](https://reactjs.org)
+- [React Native](https://facebook.github.io/react-native/)
+- [Expo](https://expo.io/)
+- [TypeScript](https://www.typescriptlang.org/)
+
+
 ## Estrutura
 O projeto conta com uma estrtura de backend, uma versão web e uma mobile.
 
