@@ -65,6 +65,27 @@ opening_hours: text;
 opening_on_weekends: boolean;
 images: array de imagens;
 ```
+
+#### GET /users
+Retorna um array de JSON com todos os usuários cadastrados.
+#### GET /users/:ID
+Retorna um JSON com todos as informações de determinado usuário.
+#### POST /users/
+Cadastra um novo usuário na base. Ele recebe os seguintes campos:
+
+```
+name: text
+email: text;
+password: text;
+```
+#### POST /authenticate/
+Retorna o token de acesso do usuário a partir do login e da senha.
+```
+email: text;
+password: text;
+```
+
+
 ## WEB
 
 A versão WEB estara acessive pelo endereço  **http://localhost:3000/**
