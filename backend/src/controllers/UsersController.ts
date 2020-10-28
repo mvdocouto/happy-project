@@ -1,10 +1,25 @@
 import { Request, Response } from "express";
 import { getRepository } from "typeorm";
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 import usersView from "../views/users_views";
 import * as Yup from "yup";
 
 import Users from "../models/Users";
+
+const { SECRET_TOKEN } = process.env;
+const SECRET = Buffer.from(SECRET_TOKEN).toString("base64");
+
+const getToken = (id, name, email) =>
+  jwt.sign(
+    {
+      id,
+      name,
+      email,
+    },
+    SECRET,
+    { expiresIn: "1d" }
+  );
 
 export default {
   async index(request: Request, response: Response) {
@@ -21,11 +36,10 @@ export default {
   },
 
   async create(request: Request, response: Response) {
-    const { name, email, password } = request.body;
+    const { name, email } = request.body;
 
-    const SALTROUND = 10;
     const usersRepository = getRepository(Users);
-    const hashPassword = bcrypt.hash(password, SALTROUND);
+    const password = await bcrypt.hash(request.body.password, 10);
 
     const data = {
       name,
@@ -53,13 +67,18 @@ export default {
     const { email, password } = request.body;
 
     const usersRepository = getRepository(Users);
-    const user = await usersRepository.findOneOrFail(email);
-    const match = await bcrypt.compare(password, user.password);
+    const user = await usersRepository.findOne({ where: { email } });
 
+    if (!user) {
+      return response.status(401).json({ message: "user unauthorized" });
+    }
+
+    const match = await bcrypt.compare(password, user.password);
     if (match) {
-      return response.status(200).json(user);
+      const token = getToken(user.id, user.name, user.email);
+      return response.status(200).json({ token });
     } else {
-      return response.status(401).json(user);
+      return response.status(401).json({ message: "user unauthorized" });
     }
   },
 };
