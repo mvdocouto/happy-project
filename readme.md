@@ -69,7 +69,13 @@ yarn start
 ```
 
 ## Mobile
-Para rodar o local a versão mobile é necessaria e utilização do [Expo](https://expo.io/) para rodar a aplicação direto no celular utiliza o Expo Client em seu aparelho. Em caso de duvidas este [Post](https://itnext.io/set-up-react-native-with-expo-1e63a82d01ac) explica passo a passo.
+A versão mobile necessita da instalação do [expo-cli](https://docs.expo.io/workflow/expo-cli/) para utilização de sua bibliotecas. 
+
+```
+npm install -g expo-cli
+```
+
+Para rodar a aplicação direto no celular utiliza o Expo Client em seu aparelho. Em caso de duvidas este [Post](https://itnext.io/set-up-react-native-with-expo-1e63a82d01ac) explica passo a passo.
 
 ### Instalação
 ```
