@@ -19,7 +19,7 @@ O projeto conta com uma estrtura de backend, uma versão web e uma mobile.
 [<img src="images/mobile-detail.png" width="320"/>](images/mobile-detail.png)
 
 # Instalação
-O projeto esta dividido em 3 pastas ( backend / Web /mobile) cada com a sua estrura de projeto e suas dependenncias.
+O projeto esta dividido em 3 pastas ( Backend / Web / Mobile) cada com a sua estrura de projeto e suas dependências.
 
 ## Backend
 O sistema necessita que do [Node.js](https://nodejs.org/en/) e de um gerenciador de pacotes para que seja executado. Neste projeto optei pelo utilização de [Yarn](https://yarnpkg.com/).
