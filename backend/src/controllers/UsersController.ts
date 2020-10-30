@@ -7,10 +7,10 @@ import * as Yup from "yup";
 
 import Users from "../models/Users";
 
-const { SECRET_TOKEN } = process.env;
+const { SECRET_TOKEN } = <any>process.env;
 const SECRET = Buffer.from(SECRET_TOKEN).toString("base64");
 
-const getToken = (id, name, email) =>
+const getToken = (id: number, name: string, email: string) =>
   jwt.sign(
     {
       id,
